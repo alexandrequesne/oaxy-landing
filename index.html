@@ -104,8 +104,6 @@ p { margin: 0; }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .subtitle { font-family: var(--f-title); font-weight: 700; font-size: clamp(19px, 2vw, 23px); line-height: 1.35; color: var(--text-primary); max-width: 34ch; }
 .ctas { display: flex; flex-wrap: wrap; gap: 10px; }
-.regs { display: flex; flex-wrap: wrap; gap: 8px; }
-.regs span { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-secondary); background: var(--card); border: 1px solid var(--border-md); border-radius: 999px; padding: 4px 11px; }
 
 /* Vues de l'application fondues dans la page : même fond, pas de cadre, bords qui s'effacent */
 .blend { margin: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -118,7 +116,6 @@ p { margin: 0; }
   mask-image: linear-gradient(to bottom, #000 68%, transparent 100%), linear-gradient(to right, #000 82%, transparent 100%);
   mask-composite: intersect;
 }
-.blend--hero figcaption { margin-top: -6px; }
 .band--hero { overflow: hidden; }
 
 /* Cas réel */
@@ -271,12 +268,10 @@ p { margin: 0; }
           <a class="btn btn--primary" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20%C3%A9change">Parler de vos fournisseurs critiques</a>
           <a class="btn btn--secondary" href="#methode">Voir la méthode</a>
         </div>
-        <div class="regs" aria-label="Textes couverts"><span>DORA</span><span>NIS2</span><span>RGPD</span><span>AI Act</span><span>ISO 27001</span></div>
       </div>
       <figure class="blend blend--hero">
         <img src="assets/capture-evaluation.webp" width="1800" height="1135"
           alt="Évaluation d’un fournisseur dans OAXY TPRM : réponses, écarts, conformité par section, statut et accès du fournisseur. Données de démonstration fictives.">
-        <figcaption>Évaluation fournisseur dans OAXY TPRM · données fictives</figcaption>
       </figure>
     </section>
   </div>
