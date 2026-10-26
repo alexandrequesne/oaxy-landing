@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Centre de confiance — OAXY</title>
+<meta name="description" content="Sécurité, confidentialité et conformité de la plateforme OAXY TPRM : hébergement européen, chiffrement, contrôle d’accès, accès support, IA, réversibilité.">
+<link rel="canonical" href="https://www.oaxy.fr/securite">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Sora:wght@700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/legal.css">
+</head>
+<body>
+<header class="nav band">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="OAXY TPRM, accueil">
+      <img src="assets/logo.svg" alt="" width="30" height="30">
+      <span class="wordmark">OAXY</span>
+      <span class="wordmark-tag">TPRM</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a class="btn btn--primary" href="mailto:contact@oaxy.fr?subject=Centre%20de%20confiance">Nous écrire</a>
+    </nav>
+  </div>
+</header>
+
+<main class="band">
+  <article class="doc doc--wide">
+    <header class="doc-head">
+      <span class="eyebrow">Centre de confiance</span>
+      <h1>Sécurité de la plateforme OAXY TPRM</h1>
+      <p class="updated">Dernière mise à jour : 26 octobre 2026</p>
+      <p class="intro">Vous nous confiez des informations sensibles sur vos fournisseurs. Cette page décrit, sans jargon, comment la plateforme les protège. Vous évaluez vos tiers : évaluez-nous aussi.</p>
+    </header>
+
+    <ul class="pillars" aria-label="En bref">
+      <li class="card"><span>Hébergement</span><b>Union européenne</b><p>Amsterdam, Francfort et Paris.</p></li>
+      <li class="card"><span>Chiffrement</span><b>TLS 1.2+ et AES-256</b><p>Connexions chiffrées ; documents chiffrés par OAXY avant stockage.</p></li>
+      <li class="card"><span>Connexion</span><b>Double authentification et SSO</b><p>Exigibles pour toute votre entreprise.</p></li>
+      <li class="card"><span>Support</span><b>Sur votre autorisation</b><p>Durée limitée, notifiée et tracée.</p></li>
+      <li class="card"><span>IA</span><b>Aucune IA intégrée</b><p>Vos données n’entraînent aucun modèle.</p></li>
+      <li class="card"><span>Réversibilité</span><b>Export puis suppression</b><p>Données supprimées sous 90 jours après la fin du contrat.</p></li>
+    </ul>
+
+    <nav class="toc" aria-label="Sommaire">
+      <p>Sommaire</p>
+      <ol>
+        <li><a href="#hebergement">Hébergement</a></li>
+        <li><a href="#chiffrement">Chiffrement</a></li>
+        <li><a href="#acces">Connexion et droits</a></li>
+        <li><a href="#cloisonnement">Cloisonnement des clients</a></li>
+        <li><a href="#fournisseurs">Accès de vos fournisseurs</a></li>
+        <li><a href="#support">Accès de l’équipe OAXY</a></li>
+        <li><a href="#tracabilite">Traçabilité</a></li>
+        <li><a href="#ia">IA et assistants</a></li>
+        <li><a href="#developpement">Développement et exploitation</a></li>
+        <li><a href="#donnees">Vos données</a></li>
+        <li><a href="#conformite">Conformité</a></li>
+        <li><a href="#documents">Documents disponibles</a></li>
+        <li><a href="#vulnerabilite">Signaler une vulnérabilité</a></li>
+      </ol>
+    </nav>
+
+    <section id="hebergement" aria-labelledby="t-hebergement">
+      <h2 id="t-hebergement">1. Hébergement</h2>
+      <p>Les données de la plateforme sont stockées dans l’Union européenne :</p>
+      <div class="table-card">
+        <table class="table">
+          <thead><tr><th scope="col">Composant</th><th scope="col">Prestataire</th><th scope="col">Lieu</th></tr></thead>
+          <tbody>
+            <tr><td>Serveurs de la plateforme</td><td>Railway</td><td>Amsterdam, Pays-Bas</td></tr>
+            <tr><td>Base de données</td><td>Neon (sur AWS)</td><td>Francfort, Allemagne</td></tr>
+            <tr><td>Documents</td><td>Scaleway</td><td>Paris, France</td></tr>
+            <tr><td>E-mails de la plateforme</td><td>Scaleway</td><td>Paris, France</td></tr>
+            <tr><td>Interface (pages, sans vos données)</td><td>Vercel</td><td>Réseau de diffusion mondial</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>La liste complète des prestataires, leur rôle et l’encadrement des transferts figurent dans la <a href="/confidentialite#prestataires">politique de confidentialité</a>. Tout nouveau prestataire touchant vos données vous est annoncé à l’avance.</p>
+    </section>
+
+    <section id="chiffrement" aria-labelledby="t-chiffrement">
+      <h2 id="t-chiffrement">2. Chiffrement</h2>
+      <ul>
+        <li><b>En transit</b> : toutes les connexions passent en HTTPS (TLS 1.2 ou 1.3) ; l’interface et l’API imposent HTTPS à votre navigateur (HSTS).</li>
+        <li><b>Documents</b> : chaque fichier est chiffré par OAXY en AES-256-GCM avant d’être envoyé au stockage. Le prestataire de stockage ne détient pas la clé et ne voit que des fichiers illisibles.</li>
+        <li><b>Base de données</b> : chiffrée au repos par l’hébergeur.</li>
+        <li><b>Mots de passe</b> : jamais stockés en clair, seulement sous forme hachée (bcrypt).</li>
+        <li><b>Liens des fournisseurs</b> : seule une empreinte du lien est conservée en base ; un lien ne peut pas être reconstitué à partir d’elle.</li>
+      </ul>
+    </section>
+
+    <section id="acces" aria-labelledby="t-acces">
+      <h2 id="t-acces">3. Connexion et droits</h2>
+      <ul>
+        <li><b>Double authentification</b> : application d’authentification ou code par e-mail, avec codes de secours. Chaque utilisateur peut l’activer ; votre administrateur peut l’exiger pour toute l’entreprise et interdire le code par e-mail.</li>
+        <li><b>Connexion unique (SSO)</b> : avec Microsoft Entra ID ou Google Workspace (OpenID Connect). Votre administrateur peut la rendre obligatoire, après un test réussi ; le mot de passe est alors refusé.</li>
+        <li><b>Rôles</b> : utilisateur ou administrateur. Les décisions (validation d’une exception, configuration, gestion des comptes) sont réservées aux administrateurs, et ce contrôle est appliqué par le serveur, pas seulement par l’interface.</li>
+        <li><b>Tentatives limitées</b> : après 10 mots de passe erronés sur un compte, ou 30 depuis une même adresse, les connexions sont refusées pendant 15 minutes.</li>
+        <li><b>Sessions</b> : renouvelées toutes les 30 minutes pendant l’activité, et limitées à 12 heures.</li>
+        <li><b>Comptes</b> : créés uniquement par invitation de votre administrateur (lien valable 7 jours) ; désactivables à tout moment.</li>
+      </ul>
+    </section>
+
+    <section id="cloisonnement" aria-labelledby="t-cloisonnement">
+      <h2 id="t-cloisonnement">4. Cloisonnement des clients</h2>
+      <p>Chaque donnée est rattachée à l’entreprise cliente qui l’a créée, et chaque requête est filtrée sur l’entreprise de l’utilisateur connecté. Des tests automatisés vérifient qu’un client ne peut ni lire ni modifier les données d’un autre, y compris par l’assistant IA connecté ou par les liens des fournisseurs.</p>
+    </section>
+
+    <section id="fournisseurs" aria-labelledby="t-fournisseurs">
+      <h2 id="t-fournisseurs">5. Accès de vos fournisseurs</h2>
+      <ul>
+        <li>Vos fournisseurs répondent sans compte, par un lien propre à une demande : un questionnaire, un dépôt de documents ou une attestation de sortie. Le lien n’ouvre rien d’autre.</li>
+        <li>Chaque lien est tiré au hasard (256 bits), expire et peut être révoqué à tout moment.</li>
+        <li>Le nombre de requêtes par poste est limité, et un poste qui essaie des liens invalides est bloqué.</li>
+        <li>Les fichiers déposés sont limités à 20 Mo et leur type est vérifié sur leur contenu, pas seulement sur leur extension.</li>
+      </ul>
+    </section>
+
+    <section id="support" aria-labelledby="t-support">
+      <h2 id="t-support">6. Accès de l’équipe OAXY</h2>
+      <ul>
+        <li>L’équipe OAXY n’a pas accès à vos données par défaut. Un de vos administrateurs peut l’autoriser pour 1, 3 ou 7 jours, en lecture seule ou avec modifications, et révoquer cette autorisation à tout moment.</li>
+        <li>Chaque session de support dure 2 heures au plus. Vos administrateurs reçoivent un e-mail à chaque ouverture, et un bandeau reste affiché pendant toute la session.</li>
+        <li>Même autorisée, l’équipe OAXY ne peut pas gérer vos utilisateurs, vos paramètres de sécurité ni les connexions des assistants IA.</li>
+        <li>Les comptes de l’équipe OAXY exigent toujours un mot de passe et la double authentification.</li>
+      </ul>
+    </section>
+
+    <section id="tracabilite" aria-labelledby="t-tracabilite">
+      <h2 id="t-tracabilite">7. Traçabilité</h2>
+      <p>Les actions importantes (création, modification, décision, accès de support) sont enregistrées dans un journal d’activité avec leur auteur, leur date et l’adresse IP. Vos administrateurs le consultent depuis la plateforme. Les actions de l’équipe OAXY y apparaissent sous son nom, marquées comme telles.</p>
+    </section>
+
+    <section id="ia" aria-labelledby="t-ia">
+      <h2 id="t-ia">8. IA et assistants</h2>
+      <ul>
+        <li>OAXY TPRM n’intègre aucune IA et n’envoie vos données à aucun fournisseur d’IA. Vos données n’entraînent aucun modèle.</li>
+        <li>Si vous le souhaitez, vous pouvez interroger la plateforme depuis votre propre assistant (Claude, ChatGPT…). Chaque utilisateur autorise lui-même cette connexion, dans la limite de ses droits, et peut la révoquer à tout moment.</li>
+        <li>Un assistant connecté ne modifie rien sans aperçu ni confirmation, et ne peut jamais supprimer. Son accès est distinct de celui de l’application : il n’ouvre que ce qui est prévu pour lui.</li>
+        <li>La veille sur vos fournisseurs ne transmet aucune information à l’extérieur : OAXY télécharge des listes publiques et les rapproche chez lui.</li>
+      </ul>
+    </section>
+
+    <section id="developpement" aria-labelledby="t-developpement">
+      <h2 id="t-developpement">9. Développement et exploitation</h2>
+      <ul>
+        <li>Plus de 390 tests automatisés (droits, cloisonnement, liens des fournisseurs, connexion) sont exécutés avant chaque mise en production.</li>
+        <li>Les secrets (clés de chiffrement et d’accès) ne figurent jamais dans le code : ils sont conservés dans la configuration de l’hébergeur.</li>
+        <li>La plateforme est développée et testée sur des données fictives uniquement.</li>
+        <li>La base de données est sauvegardée en continu et peut être restaurée à un instant précis.</li>
+      </ul>
+    </section>
+
+    <section id="donnees" aria-labelledby="t-donnees">
+      <h2 id="t-donnees">10. Vos données</h2>
+      <ul>
+        <li>Vos données vous appartiennent. OAXY les traite uniquement pour vous fournir le service, sur vos instructions.</li>
+        <li>Vous pouvez les exporter à tout moment, et à la fin du contrat. Elles sont ensuite supprimées sous 90 jours, documents compris.</li>
+        <li>En cas d’incident de sécurité touchant vos données, nous vous prévenons dans les meilleurs délais.</li>
+      </ul>
+    </section>
+
+    <section id="conformite" aria-labelledby="t-conformite">
+      <h2 id="t-conformite">11. Conformité</h2>
+      <p>Au sens du RGPD, OAXY agit comme sous-traitant de ses clients (article 28) : un accord de traitement des données est conclu avec chaque client, et OAXY a lui-même signé un accord de traitement avec chacun de ses hébergeurs. Voir la <a href="/confidentialite">politique de confidentialité</a>.</p>
+    </section>
+
+    <section id="documents" aria-labelledby="t-documents">
+      <h2 id="t-documents">12. Documents disponibles</h2>
+      <p>Sur simple demande à <a href="mailto:contact@oaxy.fr?subject=Centre%20de%20confiance%20%E2%80%94%20documents">contact@oaxy.fr</a>, nous vous transmettons les documents utiles à votre évaluation : accord de traitement des données, liste des sous-traitants, réponses à votre questionnaire de sécurité.</p>
+    </section>
+
+    <section id="vulnerabilite" aria-labelledby="t-vulnerabilite">
+      <h2 id="t-vulnerabilite">13. Signaler une vulnérabilité</h2>
+      <p>Si vous pensez avoir trouvé une faille, écrivez à <a href="mailto:contact@oaxy.fr?subject=Vuln%C3%A9rabilit%C3%A9">contact@oaxy.fr</a> en décrivant le problème et comment le reproduire. Merci de ne pas l’exploiter au-delà de ce qui est nécessaire pour le démontrer, ni de le rendre public avant correction. Nous accusons réception rapidement et vous tenons informé.</p>
+    </section>
+  </article>
+</main>
+
+<footer class="footer band">
+  <div class="wrap">
+    <span>© 2026 OAXY Consulting · Paris</span>
+    <nav aria-label="Informations légales">
+      <a href="/securite" aria-current="page">Sécurité</a>
+      <a href="/mentions-legales">Mentions légales</a>
+      <a href="/confidentialite">Confidentialité</a>
+      <a href="/conditions">Conditions d’utilisation</a>
+      <a href="mailto:contact@oaxy.fr">contact@oaxy.fr</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
