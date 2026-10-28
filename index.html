@@ -26,220 +26,337 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Sora:wght@700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Sora:wght@600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap">
 <style>
-/* Couleurs du mode clair de l'application OAXY TPRM (contrastes WCAG AA). */
+/* Mise en page : produit d'abord. Bandeau d'ouverture sombre aux couleurs du logo (noir, bleu électrique, citron),
+   captures réelles de l'application cadrées comme des fenêtres, grille de fonctionnalités, bandes sombres pour la sécurité et l'appel final. */
 :root {
-  --page: #F3F4F8;
-  --card: #FFFFFF;
-  --input: #EEF0F5;
-  --text: #111827;
-  --text-primary: #07070F;
-  --text-secondary: #5A6080;
-  --text-muted: #61678A;
-  --border: rgba(0, 0, 0, 0.09);
-  --border-md: rgba(0, 0, 0, 0.14);
-  --accent: #1A63B3;
-  --accent-solid: #1F6FC5;
+  --ink: #07070F;          /* fond sombre, noir du logo */
+  --page: #FFFFFF;
+  --mist: #F4F6FB;         /* bandes claires alternées */
+  --text: #0A0F1F;
+  --text-2: #4F5675;
+  --text-3: #626985;
+  --line: rgba(10, 15, 31, 0.09);
+  --line-2: rgba(10, 15, 31, 0.15);
+  --accent: #3D5AFE;       /* bleu électrique du logo */
+  --accent-2: #2E46E0;
+  --accent-soft: rgba(61, 90, 254, 0.10);
+  --lime: #C6FF00;         /* citron du logo : surlignage et petites touches, jamais en texte sur fond clair */
+  --sky: #EEF1FF;          /* fond bleuté très léger (ouverture, appel final) */
   --danger: #B82827;
   --warning: #8F5000;
   --success: #0B6B4C;
   --violet: #5442C8;
-  --radius-card: 14px;
-  --radius-control: 8px;
+  --r-lg: 20px;
+  --r-md: 14px;
+  --r-sm: 9px;
   --f-logo: 'Syne', 'Arial Black', Arial, sans-serif;
   --f-title: 'Sora', 'Helvetica Neue', Arial, sans-serif;
   --f-body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
   --f-mono: 'DM Mono', 'Courier New', monospace;
-  --wrap: 1180px;
+  --wrap: 1200px;
+  --shadow: 0 1px 2px rgba(10, 15, 31, 0.04), 0 12px 32px -12px rgba(10, 15, 31, 0.14);
+  --shadow-lg: 0 30px 70px -30px rgba(31, 45, 120, 0.28);
   color-scheme: light;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--page); color: var(--text); font-family: var(--f-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: var(--accent); }
-:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { font-family: var(--f-title); font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em; line-height: 1.12; margin: 0; text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--f-title); font-weight: 700; color: var(--text); letter-spacing: -0.025em; line-height: 1.1; margin: 0; text-wrap: balance; }
 p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
 .band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.band--white { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.band--mist { background: var(--mist); }
 .wrap { max-width: var(--wrap); margin: 0 auto; }
-.section { padding-block: clamp(56px, 8vw, 104px); display: flex; flex-direction: column; gap: 36px; }
-.head { display: flex; flex-direction: column; gap: 14px; }
-.eyebrow { font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-.h2 { font-size: clamp(28px, 3.8vw, 44px); max-width: 22ch; }
-.lead { color: var(--text-secondary); font-size: 18px; max-width: 62ch; }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); }
+.section { padding-block: clamp(72px, 9vw, 120px); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px); }
+.head { display: flex; flex-direction: column; gap: 16px; max-width: 760px; }
+.head--center { align-items: center; text-align: center; margin-inline: auto; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.h2 { font-size: clamp(30px, 4vw, 48px); }
+.lead { color: var(--text-2); font-size: clamp(17px, 1.4vw, 19px); max-width: 62ch; }
+.note { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-3); }
 
-/* Boutons et badges : ceux de l'application */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-body); font-weight: 600; font-size: 15px; line-height: 1.2; text-decoration: none; border-radius: var(--radius-control); padding: 12px 20px; border: 1px solid transparent; transition: opacity .15s ease; }
-.btn:hover { opacity: .9; }
-.btn--primary { background: var(--accent-solid); border-color: var(--accent-solid); color: #FFFFFF; }
-.btn--secondary { background: var(--input); border-color: var(--border-md); color: var(--text); }
-.badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; background: color-mix(in srgb, var(--c) 14%, transparent); color: var(--c); }
-.badge--accent { --c: var(--accent); }
-.badge--danger { --c: var(--danger); }
-.badge--warning { --c: var(--warning); }
-.badge--success { --c: var(--success); }
-.badge--violet { --c: var(--violet); }
+/* Boutons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-body); font-weight: 600; font-size: 15px; line-height: 1.2; text-decoration: none; border-radius: 999px; padding: 13px 22px; border: 1px solid transparent; transition: transform .15s ease, background-color .15s ease, border-color .15s ease; white-space: nowrap; }
+.btn:hover { transform: translateY(-1px); }
+.btn svg { width: 16px; height: 16px; }
+.btn--primary { background: var(--accent); color: #FFFFFF; }
+.btn--primary:hover { background: var(--accent-2); }
+.btn--lime { background: var(--accent); color: #FFFFFF; }
+.btn--lime:hover { background: var(--accent-2); }
+.btn--ghost { background: transparent; color: var(--text); border-color: var(--line-2); }
+.btn--ghost:hover { border-color: var(--text); }
+.link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; text-decoration: none; }
+.link-arrow:hover { text-decoration: underline; }
 
 /* Navigation */
-.nav { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 12px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--page); }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(255, 255, 255, 0.86); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 14px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
 .brand img { width: 30px; height: 30px; }
-.wordmark { font-family: var(--f-logo); font-weight: 800; font-size: 20px; letter-spacing: 0.04em; line-height: 1; }
-.wordmark-tag { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--text-muted); }
-.nav-links { display: flex; align-items: center; gap: 6px; }
-.nav-links a:not(.btn) { color: var(--text-secondary); text-decoration: none; font-size: 15px; font-weight: 500; padding: 8px 12px; border-radius: var(--radius-control); }
-.nav-links a:not(.btn):hover { background: var(--input); color: var(--text-primary); }
-.nav .btn { padding: 9px 16px; font-size: 14px; margin-left: 6px; }
+.wordmark { font-family: var(--f-logo); font-weight: 800; font-size: 20px; letter-spacing: 0.05em; line-height: 1; }
+.wordmark-tag { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--text-3); border: 1px solid var(--line-2); border-radius: 6px; padding: 3px 6px; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a:not(.btn) { color: var(--text-2); text-decoration: none; font-size: 15px; font-weight: 500; padding: 8px 12px; border-radius: 999px; }
+.nav-links a:not(.btn):hover { color: var(--text); background: var(--mist); }
+.nav .btn { padding: 10px 18px; font-size: 14px; margin-left: 8px; }
+.nav .login { margin-left: 8px; }
 
-/* Hero */
-.hero { padding-block: clamp(48px, 7vw, 88px) clamp(56px, 8vw, 96px); display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
-.hero > * { min-width: 0; }
-.hero-copy { display: flex; flex-direction: column; gap: 22px; }
-.hero h1 { font-size: clamp(38px, 5.4vw, 64px); letter-spacing: -0.03em; line-height: 1.04; }
-.hero h1 em { font-style: normal; color: var(--accent); }
-.subtitle { font-family: var(--f-title); font-weight: 700; font-size: clamp(19px, 2vw, 23px); line-height: 1.35; color: var(--text-primary); max-width: 34ch; }
+/* Ouverture */
+.hero { position: relative; overflow: hidden; background: var(--page); color: var(--text); }
+.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 60% at 50% 0%, var(--sky), transparent 75%); }
+.hero .wrap { position: relative; z-index: 1; padding-block: clamp(40px, 6vw, 80px) clamp(40px, 5vw, 72px); display: flex; flex-direction: column; gap: clamp(48px, 6vw, 72px); }
+.hero-top { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.hero-top > * { min-width: 0; }
+.hero h1 { color: var(--text); font-size: clamp(42px, 6.6vw, 84px); letter-spacing: -0.04em; line-height: 1.0; }
+.hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, rgba(198, 255, 0, 0.85) 62%, rgba(198, 255, 0, 0.85) 92%, transparent 92%); padding-inline: 4px; margin-inline: -4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.hero-side { display: flex; flex-direction: column; gap: 26px; padding-bottom: 8px; }
+.hero-side p { color: var(--text-2); font-size: clamp(17px, 1.4vw, 19px); }
+.hero-side p b { color: var(--text); font-weight: 600; }
 .ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+.assurances { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--text-2); }
+.assurances li { display: inline-flex; align-items: center; gap: 7px; }
+.assurances svg { width: 15px; height: 15px; color: var(--accent); flex: none; }
 
-/* Vues de l'application fondues dans la page : même fond, pas de cadre, bords qui s'effacent */
-.blend { margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.blend img { width: 100%; height: auto; }
-.blend figcaption { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-muted); }
-.blend--hero { width: calc(100% + clamp(0px, 7vw, 120px)); }
-.blend--hero img {
-  -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%), linear-gradient(to right, #000 82%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to bottom, #000 68%, transparent 100%), linear-gradient(to right, #000 82%, transparent 100%);
-  mask-composite: intersect;
-}
-.band--hero { overflow: hidden; }
+/* Illustration animée de l'ouverture : OAXY au centre, vos fournisseurs autour, leurs statuts qui évoluent */
+.orbit { position: relative; width: 100%; aspect-ratio: 1200 / 520; margin-inline: auto; }
+.orbit::after { content: ""; position: absolute; left: 50%; top: 50%; width: min(80%, 640px); aspect-ratio: 1; border-radius: 50%; pointer-events: none; }
+.orbit::after { transform: translate(-50%, -50%); background: repeating-radial-gradient(circle, transparent 0 63px, rgba(61,90,254,.10) 63px 64px);
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent); mask-image: radial-gradient(closest-side, #000 55%, transparent); }
+.orbit-hub { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 3; width: 116px; height: 116px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--page); border: 1px solid var(--line-2); box-shadow: 0 24px 60px -24px rgba(61,90,254,.45); }
+.orbit-hub img { width: 70px; height: 70px; }
+.orbit-hub::before, .orbit-hub::after { content: ""; position: absolute; inset: -1px; border-radius: 50%; border: 1px solid rgba(61,90,254,.35); animation: orbit-ring 3.6s ease-out infinite; }
+.orbit-hub::after { animation-delay: 1.8s; }
+@keyframes orbit-ring { from { transform: scale(1); opacity: .8; } to { transform: scale(2.3); opacity: 0; } }
+.orbit-hub span { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); }
+.wire { position: absolute; z-index: 1; height: 1px; transform-origin: 0 50%; pointer-events: none; font-style: normal;
+  background: linear-gradient(90deg, rgba(61,90,254,.45), rgba(61,90,254,.12)); }
+.wire b { position: absolute; top: -3px; left: 100%; width: 7px; height: 7px; border-radius: 99px; background: var(--accent); box-shadow: 0 0 0 4px rgba(61,90,254,.15);
+  animation: orbit-packet 3.4s cubic-bezier(.45,0,.25,1) infinite; animation-delay: calc(var(--i) * -0.57s); }
+@keyframes orbit-packet { 0% { left: 100%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: 0; opacity: 0; } }
+.vendor { position: absolute; left: var(--x); top: var(--y); z-index: 2; width: 244px; padding: 12px 14px; border-radius: 14px; display: flex; flex-direction: column; gap: 9px;
+  background: var(--page); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(10,15,31,.04), 0 16px 36px -18px rgba(31,45,120,.25);
+  transform: translate(-50%, -50%); animation: orbit-float 7s ease-in-out infinite; animation-delay: calc(var(--d) * -2); }
+@keyframes orbit-float { 0%, 100% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, calc(-50% - 7px)); } }
+.vendor-head { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.vendor-ico { flex: none; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.vendor-ico svg { width: 16px; height: 16px; }
+.vendor-head b { flex: 1; min-width: 0; font-size: 14px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vendor-head em { flex: none; font-style: normal; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 8px; }
+.vendor-head .t1 { color: var(--danger); background: color-mix(in srgb, var(--danger) 10%, transparent); }
+.vendor-head .t2 { color: var(--warning); background: color-mix(in srgb, var(--warning) 12%, transparent); }
+.status { display: grid; font-size: 12.5px; font-weight: 600; }
+.status span { grid-area: 1 / 1; display: inline-flex; align-items: center; gap: 7px; opacity: 0; animation: orbit-status 9s infinite; }
+.status span::before { content: ""; width: 7px; height: 7px; border-radius: 99px; background: currentColor; box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 22%, transparent); }
+.status span:nth-child(1) { opacity: 1; animation-delay: calc(0s - var(--d)); }
+.status span:nth-child(2) { animation-delay: calc(3s - var(--d)); }
+.status span:nth-child(3) { animation-delay: calc(6s - var(--d)); }
+@keyframes orbit-status { 0% { opacity: 0; transform: translateY(4px); } 4% { opacity: 1; transform: none; } 30% { opacity: 1; } 33.33% { opacity: 0; } 100% { opacity: 0; } }
+.s-blue { color: var(--accent); } .s-violet { color: var(--violet); } .s-green { color: var(--success); } .s-red { color: var(--danger); } .s-amber { color: var(--warning); }
 
-/* Cas réel */
-.statement { padding-block: clamp(56px, 8vw, 96px); display: flex; flex-direction: column; gap: 18px; }
-.statement .big { font-family: var(--f-title); font-weight: 700; font-size: clamp(28px, 4.4vw, 52px); line-height: 1.1; letter-spacing: -0.03em; color: var(--text-primary); max-width: 24ch; text-wrap: balance; }
-.statement .big span { color: var(--accent); }
-.statement .note { color: var(--text-muted); font-size: 15px; }
+/* Référentiels couverts */
+.frameworks-strip { padding-block: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px 40px; flex-wrap: wrap; }
+.frameworks-strip p { font-size: 14px; color: var(--text-3); max-width: 26ch; }
+.frameworks-strip ul { display: flex; flex-wrap: wrap; gap: 10px 34px; align-items: baseline; }
+.frameworks-strip li { font-family: var(--f-title); font-weight: 700; font-size: clamp(18px, 2vw, 24px); letter-spacing: -0.01em; color: #2B3150; opacity: .78; }
+.frameworks-strip li small { font-family: var(--f-mono); font-weight: 400; font-size: 12px; letter-spacing: 0.04em; color: var(--text-3); margin-left: 6px; }
 
 /* Constat */
 .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.trio .card { padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+.trio li { padding: 28px; border-radius: var(--r-lg); background: var(--page); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px; }
+.trio .ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.trio .ico svg { width: 20px; height: 20px; }
 .trio h3 { font-size: 20px; }
-.trio p { color: var(--text-secondary); font-size: 16px; }
+.trio p { color: var(--text-2); font-size: 16px; }
+
+/* Plateforme : grille de fonctionnalités */
+.bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.tile { grid-column: span 3; min-width: 0; border-radius: var(--r-lg); background: var(--mist); border: 1px solid var(--line); overflow: hidden; display: flex; flex-direction: column; }
+.tile--4 { grid-column: span 4; }
+.tile--2 { grid-column: span 2; }
+.tile-copy { padding: 28px 28px 22px; display: flex; flex-direction: column; gap: 8px; }
+.tile-copy .eyebrow { font-size: 11px; }
+.tile h3 { font-size: 22px; }
+.tile-copy p { color: var(--text-2); font-size: 16px; max-width: 46ch; }
+.tile-visual { margin-top: auto; padding: 0 0 0 28px; min-width: 0; }
+.tile-visual img { width: 100%; height: auto; border-top-left-radius: 12px; border: 1px solid var(--line-2); border-right: 0; border-bottom: 0; box-shadow: var(--shadow); background: #FFFFFF; }
+.tile-visual--fade { -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); max-height: 340px; overflow: hidden; }
+.tile-visual--pad { padding: 0 28px 28px; }
+.tile-visual--pad img { border: 1px solid var(--line-2); border-radius: 12px; }
+.tile--ink { background: var(--sky); border-color: rgba(61,90,254,.14); }
+
+/* Maquettes en HTML dans la grille */
+.mock { margin: 0 28px 28px; margin-top: auto; background: var(--page); border: 1px solid var(--line-2); border-radius: var(--r-md); padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow); font-size: 14px; }
+.mock-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.mock-title { font-weight: 600; color: var(--text); }
+.mock-sub { color: var(--text-3); font-size: 13px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px; white-space: nowrap; background: color-mix(in srgb, var(--c) 13%, transparent); color: var(--c); }
+.pill::before { content: ""; width: 6px; height: 6px; border-radius: 99px; background: currentColor; }
+.pill--danger { --c: var(--danger); }
+.pill--accent { --c: var(--accent); }
+.pill--success { --c: var(--success); }
+.progress { height: 6px; border-radius: 99px; background: #E8EBF3; overflow: hidden; }
+.progress i { display: block; height: 100%; width: 75%; background: var(--accent); border-radius: 99px; }
+.link-box { display: flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 12px; color: var(--text-2); background: var(--mist); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; min-width: 0; }
+.link-box span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.link-box svg { width: 14px; height: 14px; flex: none; color: var(--success); }
+.chat { margin: 0 28px 28px; margin-top: auto; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.bubble { border-radius: 14px; padding: 12px 14px; line-height: 1.45; max-width: 92%; }
+.bubble--me { align-self: flex-end; background: var(--accent); color: #FFFFFF; border-bottom-right-radius: 4px; }
+.bubble--ai { align-self: flex-start; background: var(--page); color: var(--text); border: 1px solid var(--line); border-bottom-left-radius: 4px; box-shadow: var(--shadow); }
+.bubble--ai b { font-weight: 600; background: linear-gradient(transparent 60%, rgba(198,255,0,.8) 60%); }
+.bubble-meta { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+.bubble-meta svg { width: 13px; height: 13px; }
 
 /* Méthode */
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; counter-reset: step; }
-.steps li { counter-increment: step; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
-.steps li::before { content: "0" counter(step); font-family: var(--f-mono); font-size: 13px; font-weight: 500; color: var(--accent); }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; counter-reset: step; position: relative; }
+.steps li { counter-increment: step; position: relative; padding: 28px 24px 26px; border-radius: var(--r-lg); background: var(--page); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.steps li::before { content: counter(step, decimal-leading-zero); font-family: var(--f-mono); font-size: 13px; font-weight: 500; color: var(--accent); }
 .steps h3 { font-size: 21px; }
-.steps p { color: var(--text-secondary); font-size: 16px; }
-.steps li.key { border: 2px solid var(--accent-solid); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-solid) 12%, transparent); }
-.steps li.key .badge { align-self: flex-start; margin-top: auto; white-space: normal; }
+.steps p { color: var(--text-2); font-size: 16px; }
+.steps li.key { border: 2px solid var(--accent); box-shadow: 0 0 0 6px var(--accent-soft); }
+.steps .badge { margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 600; color: var(--ink); background: var(--lime); border-radius: 999px; padding: 4px 11px; }
 
-/* Différence */
-.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
-.claim { font-family: var(--f-title); font-weight: 700; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.3; letter-spacing: -0.015em; color: var(--text-primary); }
-.claim span { color: var(--accent); }
-.checks { list-style: none; margin: 0; padding: 0; }
-.checks li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); }
-.checks li:last-child { border-bottom: 1px solid var(--border); }
-.checks svg { width: 20px; height: 20px; margin-top: 3px; }
-.checks p { color: var(--text-secondary); }
-.checks b { color: var(--text-primary); font-weight: 600; }
+/* Votre méthode */
+.split { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.split > * { min-width: 0; }
+.split-copy { display: flex; flex-direction: column; gap: 24px; }
+.checks li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
+.checks li:last-child { border-bottom: 1px solid var(--line); }
+.checks svg { width: 22px; height: 22px; margin-top: 2px; color: var(--accent); }
+.checks p { color: var(--text-2); }
+.checks b { color: var(--text); font-weight: 600; }
+.framed { border-radius: var(--r-lg); border: 1px solid var(--line-2); box-shadow: var(--shadow); overflow: hidden; background: #FFFFFF; }
+.fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--page); }
+.field { padding: 22px 24px; display: flex; flex-direction: column; gap: 4px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.field:nth-child(3n) { border-right: 0; }
+.field:nth-last-child(-n+3) { border-bottom: 0; }
+.field span { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.field p { font-weight: 500; color: var(--text); font-size: 16px; }
+.subhead { display: flex; flex-direction: column; gap: 12px; max-width: 760px; }
+.subhead h3 { font-size: clamp(24px, 2.8vw, 32px); }
 
-/* Exceptions */
-.sub { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
-.sub h3 { font-size: clamp(22px, 2.6vw, 30px); max-width: 28ch; }
-.fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.field { padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
-.field span { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-.field p { font-weight: 500; color: var(--text-primary); font-size: 16px; }
+/* Sécurité */
+.secu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.secu li { background: var(--page); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+.secu svg { width: 22px; height: 22px; color: var(--accent); }
+.secu h3 { font-size: 19px; }
+.secu p { color: var(--text-2); font-size: 15px; }
+.secu-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
 
-/* Tableau : celui de l'application */
-.table-card { overflow-x: auto; }
-.table { width: 100%; border-collapse: collapse; }
-.table th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); padding: 14px 20px; border-bottom: 1px solid var(--border); }
-.table td { padding: 16px 20px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text-secondary); font-size: 16px; }
-.table tr:last-child td { border-bottom: none; }
-.table td:first-child { white-space: nowrap; width: 1%; }
-
-/* Offre */
+/* Offres */
 .offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.offer { padding: 28px; display: flex; flex-direction: column; gap: 16px; }
-.offer--main { border: 2px solid var(--accent-solid); }
-.offer .badge { align-self: flex-start; }
-.offer h3 { font-size: 26px; }
-.offer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.offer li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 10px; color: var(--text-secondary); }
-.offer li::before { content: ""; width: 8px; height: 8px; margin-top: 10px; border-radius: 999px; background: var(--accent-solid); }
-.offer .terms { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-weight: 500; color: var(--text-primary); font-size: 16px; }
+.offer { padding: clamp(26px, 3vw, 36px); border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--page); display: flex; flex-direction: column; gap: 18px; }
+.offer--main { border: 2px solid var(--accent); box-shadow: 0 0 0 6px var(--accent-soft); }
+.offer-tag { align-self: flex-start; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 999px; padding: 5px 11px; color: var(--accent); background: var(--accent-soft); }
+.offer h3 { font-size: 28px; }
+.offer > p { color: var(--text-2); }
+.offer ul { display: flex; flex-direction: column; gap: 12px; }
+.offer li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; color: var(--text); }
+.offer li svg { width: 20px; height: 20px; margin-top: 3px; color: var(--accent); }
+.offer .terms { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); color: var(--text-2); font-size: 15px; }
+.offer .btn { align-self: flex-start; }
 
-/* À propos */
-.about { display: grid; grid-template-columns: 220px minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(24px, 4vw, 48px); align-items: start; }
-.portrait { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--radius-card); border: 1px solid var(--border); }
-.about-copy { display: flex; flex-direction: column; gap: 14px; }
-.about-copy h3 { font-size: 26px; }
-.about-copy p { color: var(--text-secondary); max-width: 54ch; }
-.linkedin { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; width: fit-content; }
-.linkedin:hover { text-decoration: underline; }
-.linkedin svg { width: 18px; height: 18px; }
-.facts { padding: 4px 20px; }
-.facts div { padding: 16px 0; display: flex; flex-direction: column; gap: 4px; }
-.facts div + div { border-top: 1px solid var(--border); }
-.facts span { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-.facts p { color: var(--text-primary); }
-
-/* Prochaine étape */
-.final { padding-block: clamp(64px, 9vw, 112px); display: flex; flex-direction: column; gap: 28px; }
-.final h2 { font-size: clamp(30px, 4.4vw, 52px); max-width: 20ch; }
+/* Appel final */
+.final { position: relative; }
+.final .section { background: var(--sky); border: 1px solid rgba(61,90,254,.14); border-radius: 28px; padding: clamp(32px, 5vw, 64px); margin-block: clamp(24px, 4vw, 48px) clamp(56px, 7vw, 96px); }
+.final h2 { font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; max-width: 18ch; color: var(--text); }
+.final h2 em { font-style: normal; background: linear-gradient(transparent 62%, rgba(198, 255, 0, 0.85) 62%, rgba(198, 255, 0, 0.85) 92%, transparent 92%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .pilot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.pilot .card { padding: 22px; display: flex; flex-direction: column; gap: 6px; }
-.pilot span { font-family: var(--f-mono); font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.06em; }
-.pilot b { font-family: var(--f-title); font-size: 19px; color: var(--text-primary); }
-.pilot p { color: var(--text-secondary); font-size: 16px; }
+.pilot li { padding: 24px; border-radius: var(--r-lg); background: var(--page); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.pilot span { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--accent); }
+.pilot b { font-family: var(--f-title); font-size: 20px; color: var(--text); }
+.pilot p { color: var(--text-2); font-size: 15px; }
 .contact { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.contact .address { font-family: var(--f-mono); font-size: 15px; color: var(--text-primary); text-decoration: none; background: var(--card); border: 1px solid var(--border-md); border-radius: var(--radius-control); padding: 11px 16px; }
-.contact .address:hover { border-color: var(--accent); }
+.address { font-family: var(--f-mono); font-size: 15px; color: var(--text); text-decoration: none; border: 1px solid var(--line-2); background: var(--page); border-radius: 999px; padding: 12px 18px; user-select: all; }
+.address:hover { border-color: var(--text-2); }
 
 /* Pied de page */
-.footer { background: var(--card); border-top: 1px solid var(--border); }
-.footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px 24px; padding-block: 24px; color: var(--text-muted); font-size: 14px; }
-.footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
-.footer a { color: var(--text-secondary); text-decoration: none; }
-.footer a:hover { color: var(--accent); text-decoration: underline; }
+.footer { background: var(--mist); color: var(--text-2); border-top: 1px solid var(--line); }
+.footer .wrap { padding-block: 56px 28px; display: flex; flex-direction: column; gap: 40px; }
+.footer-top { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 32px; }
+.footer-top > * { min-width: 0; }
+.footer-brand { display: flex; flex-direction: column; gap: 14px; }
+.footer-brand p { font-size: 15px; max-width: 34ch; }
+.footer h4 { margin: 0 0 14px; font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+.footer ul { display: flex; flex-direction: column; gap: 10px; }
+.footer a { color: var(--text-2); text-decoration: none; font-size: 15px; }
+.footer .brand { color: var(--text); }
+.footer .brand:hover { text-decoration: none; }
+.footer a:hover { color: var(--text); text-decoration: underline; }
+.footer-bottom { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--text-3); }
+.footer-bottom span { display: inline-flex; align-items: center; gap: 8px; }
+.footer-bottom i { width: 7px; height: 7px; border-radius: 99px; background: var(--accent); }
 
-@media (max-width: 980px) {
-  .hero, .split { grid-template-columns: minmax(0, 1fr); }
-  .blend--hero { width: 100%; }
-  .blend--hero img { -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); }
+@media (max-width: 1080px) {
+}
+@media (max-width: 960px) {
+  .orbit { aspect-ratio: 1200 / 680; }
+  .vendor { width: 200px; }
+  .nav-links a:not(.btn):not(.login) { display: none; }
+  .hero-top, .split { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .about { grid-template-columns: 180px minmax(0, 1fr); }
-  .about .facts { grid-column: 1 / -1; }
-  .nav-links a:not(.btn) { display: none; }
+  .bento { grid-template-columns: minmax(0, 1fr); }
+  .tile, .tile--4, .tile--2 { grid-column: auto; }
+  .secu { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-top { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .footer-brand { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .trio, .steps, .fields, .offers, .pilot { grid-template-columns: minmax(0, 1fr); }
-  .about { grid-template-columns: minmax(0, 1fr); }
-  .portrait { max-width: 200px; }
-  .offer { padding: 22px; }
-  .nav .btn { padding: 8px 12px; font-size: 13px; }
-  .wordmark-tag { display: none; }
-  /* Tableau en pile : le texte, puis ce qu'il exige */
-  .table thead { display: none; }
-  .table tr { display: block; padding: 14px 16px; border-bottom: 1px solid var(--border); }
-  .table tr:last-child { border-bottom: none; }
-  .table td { display: block; padding: 0; border: none; width: auto; }
-  .table td:first-child { margin-bottom: 8px; }
+  .wordmark-tag, .nav .login { display: none; }
+  .nav .btn { padding: 9px 14px; font-size: 13px; }
+  .trio, .steps, .offers, .pilot, .secu { grid-template-columns: minmax(0, 1fr); }
+  .fields { grid-template-columns: minmax(0, 1fr); }
+  .field { border-right: 0; }
+  .field:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); }
+  .field:last-child { border-bottom: 0; }
+  .footer-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .orbit { aspect-ratio: 1 / 1.2; }
+  .vendor { left: var(--mx); top: var(--my); width: 158px; padding: 9px 10px; gap: 6px; }
+  .vendor[data-mobile="off"] { display: none; }
+  .vendor-ico { width: 22px; height: 22px; } .vendor-ico svg { width: 13px; height: 13px; }
+  .vendor-head { gap: 7px; } .vendor-head b { font-size: 12px; } .vendor-head em { display: none; }
+  .status { font-size: 11px; }
+  .orbit-hub { width: 88px; height: 88px; } .orbit-hub img { width: 52px; height: 52px; }
+  .tile-copy { padding: 22px 22px 18px; }
+  .tile-visual { padding-left: 22px; }
+  .mock, .chat { margin-inline: 22px; margin-bottom: 22px; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } .btn:hover { transform: none; }
+  .orbit-hub::before, .orbit-hub::after, .wire b, .vendor, .status span { animation: none; } }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity=".12"/><path d="M7.5 12.4l3 2.9 6-6.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M11 12l9-9M17 6l2.5 2.5M14.5 8.5l2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9.5 14.5l5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4l9 16H3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10v4M12 17v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-bug" viewBox="0 0 24 24"><rect x="7" y="8" width="10" height="12" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 12v8M4 13h3M17 13h3M5 8l2.5 2M19 8l-2.5 2M9 5.5l1 2M15 5.5l-1 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v5h5M10 13h6M10 17h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .6-8A6 6 0 0 0 6.2 9.3 4.4 4.4 0 0 0 7 18z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18M7 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 19c1-3.2 3.4-5 6.5-5s5.5 1.8 6.5 5M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.3c1.7.6 2.9 2.2 3.5 4.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="16" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 7.5h.01M8 16.5h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-app" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+</svg>
+
 <header class="nav band">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="OAXY TPRM, accueil">
@@ -248,195 +365,302 @@ p { margin: 0; }
       <span class="wordmark-tag">TPRM</span>
     </a>
     <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#plateforme">Plateforme</a>
       <a href="#methode">Méthode</a>
-      <a href="#offre">Offre</a>
-      <a href="#a-propos">À propos</a>
-      <a class="btn btn--primary" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20%C3%A9change">Prendre rendez-vous</a>
+      <a href="#offres">Offres</a>
+      <a href="/securite">Sécurité</a>
+      <a class="login" href="https://app.oaxy.fr/login">Se connecter</a>
+      <a class="btn btn--lime" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20%C3%A9change">Prendre rendez-vous</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
-  <div class="band band--hero">
-    <section class="wrap hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">Risque fournisseurs · ETI régulées</p>
-        <h1 id="hero-title">Le risque fournisseurs, <em>sous contrôle.</em></h1>
-        <p class="subtitle">Évaluations TPRM pilotées par un expert, outillées par l’IA.</p>
-        <p class="lead">OAXY mène vos évaluations de fournisseurs de bout en bout, avec une plateforme qui vérifie ce que vos fournisseurs déclarent.</p>
-        <div class="ctas">
-          <a class="btn btn--primary" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20%C3%A9change">Parler de vos fournisseurs critiques</a>
-          <a class="btn btn--secondary" href="#methode">Voir la méthode</a>
+  <section class="hero band" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-top">
+        <div>
+          <h1 id="hero-title">Le risque fournisseurs, <em>sous contrôle.</em></h1>
+        </div>
+        <div class="hero-side">
+          <p><b>Évaluations TPRM pilotées par un expert, outillées par l’IA.</b> OAXY mène vos évaluations de fournisseurs de bout en bout, avec une plateforme qui vérifie ce que vos fournisseurs déclarent.</p>
+          <div class="ctas">
+            <a class="btn btn--lime" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20%C3%A9change">Parler de vos fournisseurs critiques<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--ghost" href="#plateforme">Découvrir la plateforme</a>
+          </div>
+          <ul class="assurances" aria-label="Garanties">
+            <li><svg aria-hidden="true"><use href="#i-pin"/></svg>Conçu en France, 100 % de vos données hébergées dans l’UE</li>
+          </ul>
         </div>
       </div>
-      <figure class="blend blend--hero">
-        <img src="assets/capture-evaluation.webp" width="1800" height="1135"
-          alt="Évaluation d’un fournisseur dans OAXY TPRM : réponses, écarts, conformité par section, statut et accès du fournisseur. Données de démonstration fictives.">
-      </figure>
-    </section>
-  </div>
 
-  <div class="band band--white">
-    <section class="wrap statement" aria-label="Cas réel">
-      <p class="eyebrow">Cas réel, anonymisé</p>
-      <p class="big">Un an de relances pour obtenir les réponses d’un fournisseur. <span>Cinq minutes pour les analyser avec OAXY TPRM.</span></p>
-      <p class="note">Réponses obtenues sans OAXY, après un an de relances. Leur analyse avec OAXY TPRM a pris cinq minutes.</p>
-    </section>
-  </div>
+      <div class="orbit" data-orbit role="img" aria-label="Illustration : OAXY au centre de votre programme TPRM, relié à vos fournisseurs. Leurs statuts évoluent : questionnaire envoyé, réponses reçues, écart détecté, exception acceptée, alerte chez un sous-traitant, risque créé.">
+        <div class="orbit-hub" aria-hidden="true"><img src="assets/logo.svg" alt="" width="70" height="70"><span>Votre programme TPRM</span></div>
+        <div aria-hidden="true">
+        <div class="vendor" style="--x:15%;--y:18%;--d:0s;--mx:27%;--my:11%">
+          <div class="vendor-head"><span class="vendor-ico"><svg><use href="#i-cloud"/></svg></span><b>Hébergeur cloud</b><em class="t1">Tier 1</em></div>
+          <div class="status"><span class="s-blue">Questionnaire envoyé</span><span class="s-violet">Réponses reçues</span><span class="s-green">Conforme</span></div>
+        </div>
+        <div class="vendor" style="--x:12%;--y:66%;--d:0.7s;--mx:27%;--my:89%">
+          <div class="vendor-head"><span class="vendor-ico"><svg><use href="#i-users"/></svg></span><b>Logiciel de paie</b><em class="t2">Tier 2</em></div>
+          <div class="status"><span class="s-blue">Relance automatique</span><span class="s-violet">Réponses reçues</span><span class="s-red">Écart détecté</span></div>
+        </div>
+        <div class="vendor" style="--x:33%;--y:90%;--d:1.4s" data-mobile="off">
+          <div class="vendor-head"><span class="vendor-ico"><svg><use href="#i-card"/></svg></span><b>Paiement</b><em class="t1">Tier 1</em></div>
+          <div class="status"><span class="s-violet">Analyse en cours</span><span class="s-amber">Exception acceptée</span><span class="s-blue">Revue le 30 nov.</span></div>
+        </div>
+        <div class="vendor" style="--x:69%;--y:10%;--d:2.1s;--mx:73%;--my:11%">
+          <div class="vendor-head"><span class="vendor-ico"><svg><use href="#i-app"/></svg></span><b>Éditeur SaaS</b><em class="t2">Tier 2</em></div>
+          <div class="status"><span class="s-green">Veille active</span><span class="s-red">Alerte sous-traitant</span><span class="s-amber">Risque créé</span></div>
+        </div>
+        <div class="vendor" style="--x:88%;--y:45%;--d:1s" data-mobile="off">
+          <div class="vendor-head"><span class="vendor-ico"><svg><use href="#i-server"/></svg></span><b>Infogérance</b><em class="t1">Tier 1</em></div>
+          <div class="status"><span class="s-blue">Réévaluation planifiée</span><span class="s-blue">Questionnaire envoyé</span><span class="s-violet">Réponses reçues</span></div>
+        </div>
+        <div class="vendor" style="--x:83%;--y:86%;--d:2.6s;--mx:73%;--my:89%">
+          <div class="vendor-head"><span class="vendor-ico"><svg><use href="#i-spark"/></svg></span><b>IA générative</b><em class="t2">Tier 2</em></div>
+          <div class="status"><span class="s-violet">Exposition IA évaluée</span><span class="s-red">Écart détecté</span><span class="s-amber">Remédiation en cours</span></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="band">
+    <div class="wrap frameworks-strip">
+      <p>Conçu pour les textes que votre régulateur vous demande de respecter</p>
+      <ul aria-label="Référentiels couverts">
+        <li>DORA</li>
+        <li>NIS2</li>
+        <li>RGPD</li>
+        <li>AI Act</li>
+        <li>ISO 27001<small>références</small></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="band band--mist">
     <section class="wrap section" aria-labelledby="constat-title">
       <div class="head">
         <p class="eyebrow">Le constat</p>
         <h2 class="h2" id="constat-title">Évaluer un fournisseur prend des mois.</h2>
       </div>
-      <div class="trio">
-        <div class="card"><h3>Des réponses qui traînent</h3><p>Questionnaires envoyés, relancés, reçus incomplets. Le suivi vit dans des fichiers Excel et des boîtes mail.</p></div>
-        <div class="card"><h3>Des déclarations jamais vérifiées</h3><p>Le fournisseur répond « Non » à l’IA ou au transfert hors UE. Personne n’a le temps de vérifier.</p></div>
-        <div class="card"><h3>Des exceptions oubliées</h3><p>Un écart est accepté « temporairement ». Sans propriétaire ni échéance, il le reste.</p></div>
+      <ul class="trio">
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><h3>Des réponses qui traînent</h3><p>Questionnaires envoyés, relancés, reçus incomplets. Le suivi vit dans des fichiers Excel et des boîtes mail.</p></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><h3>Des déclarations jamais vérifiées</h3><p>Le fournisseur répond « Non » à l’IA ou au transfert hors UE. Personne n’a le temps de vérifier.</p></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Des exceptions oubliées</h3><p>Un écart est accepté « temporairement ». Sans propriétaire ni échéance, il le reste.</p></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="band" id="plateforme">
+    <section class="wrap section" aria-labelledby="plateforme-title">
+      <div class="head">
+        <p class="eyebrow">La plateforme</p>
+        <h2 class="h2" id="plateforme-title">Tout le suivi de vos fournisseurs, dans un seul outil.</h2>
+        <p class="lead">Du registre à la réévaluation : chaque fournisseur, chaque réponse, chaque écart et chaque décision au même endroit.</p>
+      </div>
+      <div class="bento">
+        <article class="tile tile--4">
+          <div class="tile-copy">
+            <p class="eyebrow">Registre et tiering</p>
+            <h3>Chaque fournisseur classé selon votre grille</h3>
+            <p>Données traitées, criticité, exposition à l’IA, sous-traitants. Le niveau de risque se calcule tout seul et fixe la fréquence de réévaluation.</p>
+          </div>
+          <div class="tile-visual tile-visual--fade">
+            <img src="assets/capture-registre.webp" width="1600" height="955" loading="lazy"
+              alt="Registre des fournisseurs dans OAXY TPRM avec tier, statut d’évaluation, prochaine réévaluation et responsable. Données fictives.">
+          </div>
+        </article>
+
+        <article class="tile tile--2">
+          <div class="tile-copy">
+            <p class="eyebrow">Questionnaires</p>
+            <h3>Un lien sécurisé, sans compte</h3>
+            <p>Votre fournisseur répond en ligne et dépose ses preuves. Relances automatiques avant et après l’échéance.</p>
+          </div>
+          <div class="mock" aria-label="Exemple de questionnaire envoyé, données fictives">
+            <div class="mock-row"><span class="mock-title">Questionnaire sécurité 2026</span><span class="pill pill--accent">Envoyé</span></div>
+            <span class="mock-sub">Paylume · Tier 1</span>
+            <div class="progress" aria-hidden="true"><i></i></div>
+            <div class="mock-row"><span class="mock-sub">18 réponses sur 24</span><span class="mock-sub">Échéance 30 nov.</span></div>
+            <div class="link-box"><svg aria-hidden="true"><use href="#i-lock"/></svg><span>Lien personnel · expire le 30 nov. 2026 · révocable</span></div>
+          </div>
+        </article>
+
+        <article class="tile tile--2 tile--ink">
+          <div class="tile-copy">
+            <p class="eyebrow">Votre assistant IA</p>
+            <h3>Interrogez OAXY depuis Claude ou ChatGPT</h3>
+            <p>OAXY n’intègre aucune IA. Vous connectez l’assistant de votre choix, et chaque modification passe par votre confirmation.</p>
+          </div>
+          <div class="chat" aria-label="Exemple d’échange avec un assistant, données fictives">
+            <p class="bubble bubble--me">Quels fournisseurs critiques ont une réévaluation en retard ?</p>
+            <p class="bubble bubble--ai">Deux fournisseurs de tier 1 : <b>Helixa Support</b>, prévue le 22 mai 2025, et <b>Paylume</b>, prévue le 10 sept. 2025.</p>
+            <p class="bubble-meta"><svg aria-hidden="true"><use href="#i-link"/></svg>Source : OAXY TPRM · lecture seule</p>
+          </div>
+        </article>
+
+        <article class="tile tile--4">
+          <div class="tile-copy">
+            <p class="eyebrow">Analyse</p>
+            <h3>Chaque réponse confrontée à vos exigences</h3>
+            <p>Les réponses sont comparées à la réponse attendue. Les écarts, les réponses vagues et les manques ressortent immédiatement, section par section.</p>
+          </div>
+          <div class="tile-visual tile-visual--fade">
+            <img src="assets/capture-evaluation.webp" width="1800" height="1135" loading="lazy"
+              alt="Évaluation d’un fournisseur dans OAXY TPRM : réponses, écarts, conformité par section, statut et accès du fournisseur. Données fictives.">
+          </div>
+        </article>
+
+        <article class="tile">
+          <div class="tile-copy">
+            <p class="eyebrow">Risques</p>
+            <h3>Une cartographie à jour, fournisseur par fournisseur</h3>
+            <p>Un risque est proposé dès qu’une exigence est conclue non conforme. Cotation, traitement et propriétaire, sur votre propre matrice.</p>
+          </div>
+          <div class="tile-visual tile-visual--pad">
+            <img src="assets/capture-risques.webp" width="1400" height="569" loading="lazy"
+              alt="Cartographie des risques fournisseurs dans OAXY TPRM : matrice impact et vraisemblance, risques ouverts par niveau. Données fictives.">
+          </div>
+        </article>
+
+        <article class="tile">
+          <div class="tile-copy">
+            <p class="eyebrow">Veille</p>
+            <h3>Ce qui arrive à vos fournisseurs, chaque jour</h3>
+            <p>Fuites de données connues, vulnérabilités exploitées, certificats, configuration e-mail et actualités cyber, y compris chez leurs sous-traitants.</p>
+          </div>
+          <div class="tile-visual tile-visual--pad">
+            <img src="assets/capture-veille.webp" width="1400" height="508" loading="lazy"
+              alt="Page Veille d’OAXY TPRM : actualités et vulnérabilités exploitées concernant les sous-traitants d’un fournisseur. Données fictives.">
+          </div>
+        </article>
       </div>
     </section>
   </div>
 
-  <div class="band band--white" id="methode">
+  <div class="band band--mist" id="methode">
     <section class="wrap section" aria-labelledby="methode-title">
       <div class="head">
         <p class="eyebrow">La méthode</p>
         <h2 class="h2" id="methode-title">Quatre étapes, un seul outil.</h2>
       </div>
       <ol class="steps">
-        <li class="card"><h3>Cartographier</h3><p>Registre des fournisseurs, données traitées, exposition à l’IA. Tiering automatique selon votre grille.</p></li>
-        <li class="card"><h3>Évaluer</h3><p>Questionnaire envoyé par lien unique. Chaque réponse est comparée à la réponse attendue.</p></li>
-        <li class="card key"><h3>Analyser</h3><p>Les réponses vagues, incohérentes ou manquantes sont repérées et confrontées aux sources publiques.</p><span class="badge badge--accent">L’IA prépare, l’expert valide</span></li>
-        <li class="card"><h3>Suivre</h3><p>Remédiations, exceptions et réévaluations planifiées selon le niveau de criticité.</p></li>
+        <li><h3>Cartographier</h3><p>Registre des fournisseurs, données traitées, exposition à l’IA. Tiering automatique selon votre grille.</p></li>
+        <li><h3>Évaluer</h3><p>Questionnaire envoyé par lien unique. Chaque réponse est comparée à la réponse attendue.</p></li>
+        <li class="key"><h3>Analyser</h3><p>Les réponses vagues, incohérentes ou manquantes sont repérées et confrontées aux sources publiques.</p><span class="badge">L’IA prépare, l’expert valide</span></li>
+        <li><h3>Suivre</h3><p>Remédiations, exceptions et réévaluations planifiées selon le niveau de criticité.</p></li>
       </ol>
     </section>
   </div>
 
   <div class="band">
     <section class="wrap section" aria-labelledby="diff-title">
-      <div class="head">
-        <p class="eyebrow">La différence</p>
-        <h2 class="h2" id="diff-title">Votre méthode, pas la nôtre.</h2>
-      </div>
       <div class="split">
-        <p class="claim">OAXY TPRM reprend vos questionnaires et vos référentiels tels qu’ils sont. <span>Pas de projet de paramétrage.</span></p>
-        <ul class="checks">
-          <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1F6FC5"/><path d="M6 10.4l2.7 2.6L14.2 7.4" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><p><b>Votre questionnaire Excel</b>, importé et rattaché automatiquement à vos exigences.</p></li>
-          <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1F6FC5"/><path d="M6 10.4l2.7 2.6L14.2 7.4" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><p><b>Vos référentiels</b> : ISO 27001, DORA, politiques internes.</p></li>
-          <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1F6FC5"/><path d="M6 10.4l2.7 2.6L14.2 7.4" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><p><b>Votre grille de tiering</b> et vos propres statuts de suivi.</p></li>
-        </ul>
+        <div class="split-copy">
+          <div class="head">
+            <p class="eyebrow">La différence</p>
+            <h2 class="h2" id="diff-title">Votre méthode, pas la nôtre.</h2>
+            <p class="lead">OAXY TPRM reprend vos questionnaires et vos référentiels tels qu’ils sont. Pas de projet de paramétrage.</p>
+          </div>
+          <ul class="checks">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><p><b>Votre questionnaire Excel</b>, importé et rattaché automatiquement à vos exigences.</p></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><p><b>Vos référentiels</b> : ISO 27001, DORA, politiques internes.</p></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><p><b>Votre grille de tiering</b> et vos propres statuts de suivi.</p></li>
+          </ul>
+        </div>
+        <figure class="framed" style="margin:0">
+          <img src="assets/capture-exceptions.webp" width="1800" height="716" loading="lazy"
+            alt="Liste des exceptions dans OAXY TPRM : exigence, fournisseur, statut, propriétaire du risque, échéance et prochaine revue. Données fictives.">
+        </figure>
       </div>
 
-      <div class="sub">
+      <div class="subhead">
         <h3>Chaque exception a un propriétaire et une échéance.</h3>
         <p class="lead">Un écart accepté n’est pas un écart oublié. Chaque exception revient en revue, et une vue d’ensemble montre quelles exigences en cumulent le plus.</p>
       </div>
       <div class="fields">
-        <div class="card field"><span>Exigence</span><p>Non satisfaite, rattachée à votre référentiel</p></div>
-        <div class="card field"><span>Justification</span><p>Le besoin métier qui motive l’exception</p></div>
-        <div class="card field"><span>Compensation</span><p>Les mesures qui réduisent le risque</p></div>
-        <div class="card field"><span>Responsabilité</span><p>Propriétaire du risque et validateur</p></div>
-        <div class="card field"><span>Échéance</span><p>Date de fin et fréquence de revue</p></div>
-        <div class="card field"><span>Remédiation</span><p>L’engagement pris par le fournisseur</p></div>
-      </div>
-      <figure class="blend">
-        <img src="assets/capture-exceptions.webp" width="1800" height="716"
-          alt="Liste des exceptions dans OAXY TPRM : exigence, fournisseur, statut, propriétaire du risque, échéance et prochaine revue. Données de démonstration fictives.">
-        <figcaption>Suivi des exceptions dans OAXY TPRM · données fictives</figcaption>
-      </figure>
-    </section>
-  </div>
-
-  <div class="band band--white">
-    <section class="wrap section" aria-labelledby="reg-title">
-      <div class="head">
-        <p class="eyebrow">Le contexte</p>
-        <h2 class="h2" id="reg-title">Le régulateur demande des preuves, pas des tableurs.</h2>
-      </div>
-      <div class="card table-card">
-        <table class="table">
-          <thead><tr><th scope="col">Texte</th><th scope="col">Ce qu’il exige vis-à-vis des fournisseurs</th></tr></thead>
-          <tbody>
-            <tr><td><span class="badge badge--accent">DORA, art. 28 à 30</span></td><td>Gérer le risque lié aux prestataires TIC, tenir un registre d’information, encadrer les contrats</td></tr>
-            <tr><td><span class="badge badge--violet">NIS2, art. 21</span></td><td>Sécuriser la chaîne d’approvisionnement</td></tr>
-            <tr><td><span class="badge badge--success">RGPD, art. 28</span></td><td>Ne recourir qu’à des sous-traitants offrant des garanties suffisantes</td></tr>
-            <tr><td><span class="badge badge--warning">AI Act, art. 26</span></td><td>Encadrer l’usage des systèmes d’IA, y compris ceux intégrés aux outils achetés</td></tr>
-          </tbody>
-        </table>
+        <div class="field"><span>Exigence</span><p>Non satisfaite, rattachée à votre référentiel</p></div>
+        <div class="field"><span>Justification</span><p>Le besoin métier qui motive l’exception</p></div>
+        <div class="field"><span>Compensation</span><p>Les mesures qui réduisent le risque</p></div>
+        <div class="field"><span>Responsabilité</span><p>Propriétaire du risque et validateur</p></div>
+        <div class="field"><span>Échéance</span><p>Date de fin et fréquence de revue</p></div>
+        <div class="field"><span>Remédiation</span><p>L’engagement pris par le fournisseur</p></div>
       </div>
     </section>
   </div>
 
-  <div class="band" id="offre">
-    <section class="wrap section" aria-labelledby="offre-title">
+  <div class="band band--mist" id="securite">
+    <section class="wrap section" aria-labelledby="secu-title">
       <div class="head">
-        <p class="eyebrow">L’offre</p>
-        <h2 class="h2" id="offre-title">Deux formules.</h2>
+        <p class="eyebrow">Sécurité</p>
+        <h2 class="h2" id="secu-title">Vous évaluez vos fournisseurs. Évaluez-nous aussi.</h2>
+        <p class="lead">Vous nous confiez des informations sensibles sur vos fournisseurs. Voici comment la plateforme les protège.</p>
+      </div>
+      <ul class="secu">
+        <li><svg aria-hidden="true"><use href="#i-pin"/></svg><h3>Hébergement européen</h3><p>Serveurs à Amsterdam, base de données à Francfort, documents à Paris.</p></li>
+        <li><svg aria-hidden="true"><use href="#i-lock"/></svg><h3>Chiffrement</h3><p>Connexions en TLS 1.2 ou 1.3. Chaque document chiffré en AES-256 par OAXY avant stockage.</p></li>
+        <li><svg aria-hidden="true"><use href="#i-key"/></svg><h3>Double authentification et SSO</h3><p>Exigibles pour toute votre entreprise. Connexion avec Microsoft Entra ID.</p></li>
+        <li><svg aria-hidden="true"><use href="#i-user"/></svg><h3>Support sur autorisation</h3><p>L’équipe OAXY n’accède à vos données que si vous l’autorisez, pour une durée limitée et tracée.</p></li>
+        <li><svg aria-hidden="true"><use href="#i-layers"/></svg><h3>Données cloisonnées</h3><p>Chaque client est isolé des autres, et des tests automatisés le vérifient à chaque version.</p></li>
+        <li><svg aria-hidden="true"><use href="#i-chip"/></svg><h3>Aucune IA intégrée</h3><p>Vos données n’entraînent aucun modèle et ne sont envoyées à aucun fournisseur d’IA.</p></li>
+      </ul>
+      <div class="secu-foot">
+        <p class="note">Mis à jour en continu sur notre centre de confiance</p>
+        <a class="link-arrow" href="/securite">Consulter le centre de confiance<svg width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </section>
+  </div>
+
+  <div class="band" id="offres">
+    <section class="wrap section" aria-labelledby="offres-title">
+      <div class="head head--center">
+        <p class="eyebrow">Les offres</p>
+        <h2 class="h2" id="offres-title">Déléguez votre programme, ou pilotez-le vous-même.</h2>
       </div>
       <div class="offers">
-        <article class="card offer offer--main">
-          <span class="badge badge--accent">Offre principale</span>
+        <article class="offer offer--main">
+          <span class="offer-tag">Offre principale</span>
           <h3>Programme TPRM géré</h3>
+          <p>OAXY mène vos évaluations, vous suivez tout sur la plateforme.</p>
           <ul>
-            <li>Vos évaluations menées de bout en bout</li>
-            <li>Vos résultats consultables sur la plateforme</li>
-            <li>Exceptions et remédiations suivies dans le temps</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Vos évaluations menées de bout en bout</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Vos résultats consultables sur la plateforme</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Exceptions et remédiations suivies dans le temps</li>
           </ul>
           <p class="terms">Contrat annuel, selon le nombre de fournisseurs suivis et leur criticité</p>
+          <a class="btn btn--primary" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20programme%20g%C3%A9r%C3%A9">Prendre rendez-vous</a>
         </article>
-        <article class="card offer">
-          <span class="badge badge--violet">En autonomie</span>
+        <article class="offer">
+          <span class="offer-tag">En autonomie</span>
           <h3>Licence OAXY TPRM</h3>
+          <p>Vos équipes pilotent elles-mêmes, avec votre méthode.</p>
           <ul>
-            <li>Vos équipes pilotent elles-mêmes</li>
-            <li>Votre méthode reprise telle quelle</li>
-            <li>Accompagnement au démarrage</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Vos équipes pilotent elles-mêmes</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Votre méthode reprise telle quelle</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Accompagnement au démarrage</li>
           </ul>
           <p class="terms">Abonnement annuel, accessible aussi après un programme géré</p>
+          <a class="btn btn--ghost" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20licence">Demander une démonstration</a>
         </article>
       </div>
     </section>
   </div>
 
-  <div class="band band--white" id="a-propos">
-    <section class="wrap section" aria-labelledby="about-title">
-      <div class="head">
-        <p class="eyebrow">Qui est derrière OAXY</p>
-        <h2 class="h2" id="about-title">Construit par un praticien du TPRM.</h2>
-      </div>
-      <div class="about">
-        <img class="portrait" src="assets/alexandre-quesne.webp" width="640" height="640" alt="Portrait d’Alexandre Quesne">
-        <div class="about-copy">
-          <h3>Alexandre Quesne</h3>
-          <p>Consultant en gouvernance, risque et conformité, spécialisé dans le risque fournisseurs. J’ai rempli ces tableurs, relancé ces fournisseurs et défendu ces exceptions en comité. OAXY TPRM est l’outil que j’ai construit pour mes propres missions.</p>
-          <a class="linkedin" href="https://www.linkedin.com/in/alexandre-quesne-657b01139" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#1F6FC5"/><path fill="#FFFFFF" d="M6.9 9.6h2.3V18H6.9zM8 6a1.33 1.33 0 1 1 0 2.66A1.33 1.33 0 0 1 8 6zm2.6 3.6h2.2v1.15h.03c.31-.58 1.06-1.2 2.18-1.2 2.33 0 2.76 1.53 2.76 3.53V18h-2.3v-4.4c0-1.05-.02-2.4-1.46-2.4-1.46 0-1.69 1.14-1.69 2.32V18h-2.3z"/></svg>
-            Profil LinkedIn
-          </a>
-        </div>
-        <div class="card facts">
-          <div><span>Assurance</span><p>3 ans dans un groupe d’assurance international</p></div>
-          <div><span>Finance</span><p>Pilotage TPRM dans un acteur de l’investissement</p></div>
-          <div><span>Au quotidien</span><p>OAXY TPRM utilisé en mission, sur des cas réels</p></div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="band">
-    <section class="wrap final" aria-labelledby="final-title">
+  <div class="band final">
+    <section class="wrap section" aria-labelledby="final-title">
       <div class="head">
         <p class="eyebrow">Prochaine étape</p>
-        <h2 id="final-title">Commençons par vos fournisseurs les plus critiques.</h2>
+        <h2 id="final-title">Commençons par vos fournisseurs <em>les plus critiques.</em></h2>
       </div>
-      <div class="pilot">
-        <div class="card"><span>Étape 1</span><b>Échange de 30 minutes</b><p>Vos fournisseurs critiques et votre méthode actuelle.</p></div>
-        <div class="card"><span>Étape 2</span><b>Pilote</b><p>Cinq fournisseurs critiques évalués, résultats en quatre semaines.</p></div>
-        <div class="card"><span>Étape 3</span><b>Programme annuel</b><p>L’ensemble de vos fournisseurs, suivis dans la durée.</p></div>
-      </div>
+      <ol class="pilot">
+        <li><span>Étape 1</span><b>Échange de 30 minutes</b><p>Vos fournisseurs critiques et votre méthode actuelle.</p></li>
+        <li><span>Étape 2</span><b>Pilote</b><p>Cinq fournisseurs critiques évalués, résultats en quatre semaines.</p></li>
+        <li><span>Étape 3</span><b>Programme annuel</b><p>L’ensemble de vos fournisseurs, suivis dans la durée.</p></li>
+      </ol>
       <div class="contact">
-        <a class="btn btn--primary" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20%C3%A9change">Écrire à OAXY</a>
+        <a class="btn btn--lime" href="mailto:contact@oaxy.fr?subject=OAXY%20TPRM%20%E2%80%94%20%C3%A9change">Prendre rendez-vous<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="address" href="mailto:contact@oaxy.fr">contact@oaxy.fr</a>
       </div>
     </section>
@@ -445,16 +669,85 @@ p { margin: 0; }
 
 <footer class="footer band">
   <div class="wrap">
-    <span>© 2026 OAXY Consulting · Paris</span>
-    <nav aria-label="Contact et informations légales">
-      <a href="/securite">Sécurité</a>
-      <a href="/mentions-legales">Mentions légales</a>
-      <a href="/confidentialite">Confidentialité</a>
-      <a href="/conditions">Conditions d’utilisation</a>
-      <a href="mailto:contact@oaxy.fr">contact@oaxy.fr</a>
-      <a href="https://www.linkedin.com/in/alexandre-quesne-657b01139" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </nav>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="OAXY TPRM, retour en haut">
+          <img src="assets/logo.svg" alt="" width="30" height="30">
+          <span class="wordmark">OAXY</span>
+          <span class="wordmark-tag">TPRM</span>
+        </a>
+        <p>Le risque fournisseurs, sous contrôle. Évaluations pilotées par un expert, sur une plateforme hébergée en Europe.</p>
+      </div>
+      <nav aria-label="Plateforme">
+        <h4>Plateforme</h4>
+        <ul>
+          <li><a href="#plateforme">Fonctionnalités</a></li>
+          <li><a href="#methode">Méthode</a></li>
+          <li><a href="#offres">Offres</a></li>
+          <li><a href="https://app.oaxy.fr/login">Se connecter</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Entreprise">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="mailto:contact@oaxy.fr">contact@oaxy.fr</a></li>
+          <li><a href="https://www.linkedin.com/in/alexandre-quesne-657b01139" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Confiance et informations légales">
+        <h4>Confiance</h4>
+        <ul>
+          <li><a href="/securite">Centre de confiance</a></li>
+          <li><a href="/confidentialite">Confidentialité</a></li>
+          <li><a href="/conditions">Conditions d’utilisation</a></li>
+          <li><a href="/mentions-legales">Mentions légales</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 OAXY Consulting · Paris</span>
+      <span><i aria-hidden="true"></i>Conçu en France · 100 % de vos données hébergées dans l’UE</span>
+    </div>
   </div>
 </footer>
+<script>
+// Illustration de l'ouverture : trace un fil entre OAXY (centre) et chaque fournisseur, recalculé quand la taille change.
+(() => {
+  const orbit = document.querySelector("[data-orbit]")
+  if (!orbit) return
+  const core = orbit.querySelector(".orbit-hub img")
+  const vendors = [...orbit.querySelectorAll(".vendor")]
+  const wires = vendors.map((_, i) => {
+    const wire = document.createElement("i")
+    wire.className = "wire"
+    wire.setAttribute("aria-hidden", "true")
+    wire.style.setProperty("--i", i)
+    wire.appendChild(document.createElement("b"))
+    orbit.prepend(wire)
+    return wire
+  })
+  const layout = () => {
+    const box = orbit.getBoundingClientRect()
+    const hub = core.getBoundingClientRect()
+    const hx = hub.left + hub.width / 2 - box.left
+    const hy = hub.top + hub.height / 2 - box.top
+    vendors.forEach((vendor, i) => {
+      const wire = wires[i]
+      const r = vendor.getBoundingClientRect()
+      if (!r.width) { wire.style.display = "none"; return }
+      const dx = r.left + r.width / 2 - box.left - hx
+      const dy = r.top + r.height / 2 - box.top - hy
+      wire.style.display = ""
+      wire.style.left = hx + "px"
+      wire.style.top = hy + "px"
+      wire.style.width = Math.hypot(dx, dy) + "px"
+      wire.style.transform = "rotate(" + Math.atan2(dy, dx) + "rad)"
+    })
+  }
+  layout()
+  if ("ResizeObserver" in window) new ResizeObserver(layout).observe(orbit)
+  else addEventListener("resize", layout)
+})()
+</script>
 </body>
 </html>
