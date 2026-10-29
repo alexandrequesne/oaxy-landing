@@ -35,7 +35,7 @@
     <header class="doc-head">
       <span class="eyebrow">Centre de confiance</span>
       <h1>Sécurité de la plateforme OAXY TPRM</h1>
-      <p class="updated">Dernière mise à jour : 26 octobre 2026</p>
+      <p class="updated">Dernière mise à jour : 29 octobre 2026</p>
       <p class="intro">Vous nous confiez des informations sensibles sur vos fournisseurs. Cette page décrit, sans jargon, comment la plateforme les protège. Vous évaluez vos tiers : évaluez-nous aussi.</p>
     </header>
 
@@ -77,6 +77,7 @@
             <tr><td>Serveurs de la plateforme</td><td>Railway</td><td>Amsterdam, Pays-Bas</td></tr>
             <tr><td>Base de données</td><td>Neon (sur AWS)</td><td>Francfort, Allemagne</td></tr>
             <tr><td>Documents</td><td>Scaleway</td><td>Paris, France</td></tr>
+            <tr><td>Sauvegardes hebdomadaires de la base</td><td>Scaleway</td><td>Paris, France</td></tr>
             <tr><td>E-mails de la plateforme</td><td>Scaleway</td><td>Paris, France</td></tr>
             <tr><td>Interface (pages, sans vos données)</td><td>Vercel</td><td>Réseau de diffusion mondial</td></tr>
           </tbody>
@@ -151,10 +152,11 @@
     <section id="developpement" aria-labelledby="t-developpement">
       <h2 id="t-developpement">9. Développement et exploitation</h2>
       <ul>
-        <li>Plus de 390 tests automatisés (droits, cloisonnement, liens des fournisseurs, connexion) sont exécutés avant chaque mise en production.</li>
+        <li>Plus de 440 tests automatisés (droits, cloisonnement, liens des fournisseurs, connexion) et une trentaine de parcours complets dans un vrai navigateur sont exécutés avant chaque mise en production.</li>
         <li>Les secrets (clés de chiffrement et d’accès) ne figurent jamais dans le code : ils sont conservés dans la configuration de l’hébergeur.</li>
         <li>La plateforme est développée et testée sur des données fictives uniquement.</li>
-        <li>La base de données est sauvegardée en continu et peut être restaurée à un instant précis.</li>
+        <li>La base de données est sauvegardée en continu et peut être restaurée à un instant précis. Une copie complète est aussi faite chaque semaine chez un second prestataire, chiffrée par OAXY, et conservée 28 jours : ni la plateforme ni un attaquant qui la compromettrait ne peuvent la modifier ou l’effacer.</li>
+        <li>La disponibilité de la plateforme est vérifiée en permanence par une sonde externe ; l’équipe OAXY est alertée à chaque interruption. Historique public : <a href="https://stats.uptimerobot.com/3z9WV9fjEA" rel="noopener">page de statut</a>.</li>
       </ul>
     </section>
 
