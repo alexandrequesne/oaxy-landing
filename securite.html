@@ -35,7 +35,7 @@
     <header class="doc-head">
       <span class="eyebrow">Centre de confiance</span>
       <h1>Sécurité de la plateforme OAXY TPRM</h1>
-      <p class="updated">Dernière mise à jour : 29 octobre 2026</p>
+      <p class="updated">Dernière mise à jour : 30 octobre 2026</p>
       <p class="intro">Vous nous confiez des informations sensibles sur vos fournisseurs. Cette page décrit, sans jargon, comment la plateforme les protège. Vous évaluez vos tiers : évaluez-nous aussi.</p>
     </header>
 
@@ -156,6 +156,8 @@
         <li>Les secrets (clés de chiffrement et d’accès) ne figurent jamais dans le code : ils sont conservés dans la configuration de l’hébergeur.</li>
         <li>La plateforme est développée et testée sur des données fictives uniquement.</li>
         <li>La base de données est sauvegardée en continu et peut être restaurée à un instant précis. Une copie complète est aussi faite chaque semaine chez un second prestataire, chiffrée par OAXY, et conservée 28 jours : ni la plateforme ni un attaquant qui la compromettrait ne peuvent la modifier ou l’effacer.</li>
+        <li>Les documents sont versionnés : un fichier remplacé ou supprimé par erreur reste récupérable pendant 30 jours.</li>
+        <li>Le domaine oaxy.fr est protégé contre l’usurpation (SPF, DKIM et DMARC en quarantaine) : un e-mail qui se fait passer pour OAXY sans venir de nos serveurs est écarté.</li>
         <li>La disponibilité de la plateforme est vérifiée en permanence par une sonde externe ; l’équipe OAXY est alertée à chaque interruption. Historique public : <a href="https://stats.uptimerobot.com/3z9WV9fjEA" rel="noopener">page de statut</a>.</li>
       </ul>
     </section>
